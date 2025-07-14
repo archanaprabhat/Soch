@@ -12,6 +12,8 @@ export default function App() {
     const newNotes = notes.filter((item, index)=> index !== id)
     setNotes(newNotes)
   }
+const filteredNotes = notes.filter((note)=> note.toLowerCase().includes(searchText.toLowerCase()))
+
   return (
     <div>
       <div><h1>Soch</h1>
@@ -27,7 +29,7 @@ export default function App() {
       <button onClick={handleNote}>Add</button>
       <div>
         <ul>
-          {notes.map((item, index) => (
+          {(searchText ? filteredNotes :notes).map((item, index) => (
             <li key={index}>
               {item}
               <button onClick={() => handleDelete(index)}>Delete</button>
